@@ -87,8 +87,17 @@
     </section>
   </main>
 
+  <script src="https://cdn.trackjs.com/agent/v3/latest/t.js"></script>
   <script>
+    window.TrackJS && TrackJS.install({ 
+      token: "ce9bfef0581643b8b0dcc61d81c90f8a"
+      // for more configuration options, see https://docs.trackjs.com
+    });
+  </script>
 
+  <script>
+    TrackJS.track('Testing TrackJS!');
+                        
     window.onerror = function(msg, url, line, col, error) {
       console.log("Global error!!!");
     };
