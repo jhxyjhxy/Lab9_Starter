@@ -90,18 +90,102 @@
   <script>
     let form = document.querySelector('form');
     form.addEventListener('submit', e => {
-      e.preventDefault();
-      let output = document.querySelector('output');
-      let firstNum = document.querySelector('#first-num').value;
-      let secondNum = document.querySelector('#second-num').value;
-      let operator = document.querySelector('#operator').value;
-      output.innerHTML = eval(`${firstNum} ${operator} ${secondNum}`);
-    });
+      try {
+        e.preventDefault();
+        let output = document.querySelector('output');
+        let firstNum = document.querySelector('#first-num').value;
+        let secondNum = document.querySelector('#second-num').value;
+        let operator = document.querySelector('#operator').value;
+        output.innerHTML = eval(`${firstNum} ${operator} ${secondNum}`);
+      } catch(err) {
+        console.log("Error in form");
+        console.error(err.name);
+      }
+    });       
 
     let errorBtns = Array.from(document.querySelectorAll('#error-btns > button'));
 
     // Start your code here
     // You may move this JS to another file if you wish
+    errorBtns[0].addEventListener("click", () => {
+      console.log("Log button clicked!")
+    });
+
+    errorBtns[1].addEventListener("click", () => {
+      console.error("Error button clicked!")
+    });
+
+    errorBtns[2].addEventListener("click", () => {
+      console.count('count')
+    });
+
+    errorBtns[3].addEventListener("click", () => {
+      console.warn("Warning!")
+    });
+
+    const x = 3;
+    const y = 2;
+    const reason = 'x is expected to be greater than y';
+    errorBtns[4].addEventListener("click", () => {
+      console.assert(x < y, {x, y, reason})
+    });
+
+    errorBtns[5].addEventListener("click", () => {
+      console.clear()
+    });
+
+    errorBtns[6].addEventListener("click", () => {
+      console.dir(document.body)
+    });
+
+    errorBtns[7].addEventListener("click", () => {
+      console.dirxml(document.body)
+    });
+
+    errorBtns[8].addEventListener("click", () => {
+      console.group("Console group button")
+    }); 
+
+    errorBtns[9].addEventListener("click", () => {
+      console.groupEnd("Console group button")
+    }); 
+
+    const arr = [
+      {
+        x: 14,
+        y: 3,
+        z: 4,
+      },
+      {
+        x: 3,
+        y: 3,
+        z: 3,
+      },
+      {
+        x: 42,
+        y: 56,
+        z: 19,
+      }
+    ];
+    errorBtns[10].addEventListener("click", () => {
+      console.table(arr)
+    }); 
+
+    errorBtns[11].addEventListener("click", () => {
+      console.time("Timer Button")
+    });
+
+    errorBtns[12].addEventListener("click", () => {
+      console.timeEnd("Timer Button")
+    });
+
+    errorBtns[13].addEventListener("click", () => {
+      const one = () => { two(); };
+      const two = () => { three(); };
+      const three = () => { console.trace(); };
+      one();
+    });
+
   </script>
 </body>
 
