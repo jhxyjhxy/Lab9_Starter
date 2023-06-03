@@ -95,11 +95,19 @@
         let output = document.querySelector('output');
         let firstNum = document.querySelector('#first-num').value;
         let secondNum = document.querySelector('#second-num').value;
+        if (isNaN(firstNum)) {
+          throw new SyntaxError("First entry is not a number");
+        } else if (isNaN(secondNum)) {
+          throw new SyntaxError("Second entry is not a number");
+        }
         let operator = document.querySelector('#operator').value;
         output.innerHTML = eval(`${firstNum} ${operator} ${secondNum}`);
       } catch(err) {
-        console.log("Error in form");
-        console.error(err.name);
+        if (err instanceof SyntaxError) {
+          console.error(err.name + ": " + err.message)
+        } else {
+          throw err;
+        }
       }
     });       
 
@@ -185,6 +193,13 @@
       const three = () => { console.trace(); };
       one();
     });
+
+    class SyntaxError extends Error {
+      constructor(message) {
+        super(message);
+        this.name = "SyntaxError";
+      }
+    }
 
   </script>
 </body>
